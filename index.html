@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turjo Special Cake Recipe</title>
+
+  <style>
+    /* Default (Brown Theme) */
+    :root {
+      --bg: #fff7ef;
+      --header: #ffb56b;
+      --header-border: #ff9a3d;
+      --text: #4a2c00;
+      --list-bg: #fff3e4;
+      --batter-bg: #f3c48c;
+      --batter-bg-active: #ffd4a1;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      transition: 0.3s;
+    }
+
+    header {
+      background: var(--header);
+      padding: 20px;
+      text-align: center;
+      border-bottom: 4px solid var(--header-border);
+      transition: 0.3s;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+
+    main { padding: 20px; }
+
+    ul {
+      background: var(--list-bg);
+      padding: 15px;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    ul li { margin: 6px 0; }
+
+    /* Batter box */
+    .batter-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .batter {
+      width: 150px;
+      height: 150px;
+      background: var(--batter-bg);
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    /* Bubble animation */
+    .bubble {
+      animation: bubble 0.5s ease-in-out;
+    }
+
+    @keyframes bubble {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); background: var(--batter-bg-active); }
+      100% { transform: scale(1); }
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    select {
+      padding: 8px;
+      border-radius: 5px;
+      border: 2px solid #ccc;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">তূর্য স্পেশাল কেক রেসিপি</h1>
+  </header>
+
+  <main>
+    <!-- Language + Theme Controls -->
+    <div class="controls">
+      <select id="langSelect">
+        <option value="bn">Bangla</option>
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="ar">Arabic</option>
+      </select>
+
+      <select id="themeSelect">
+        <option value="brown">Brown</option>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="red">Red</option>
+        <option value="pink">Pink</option>
+        <option value="violet">Violet</option>
+        <option value="yellow">Yellow</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+      </select>
+    </div>
+
+    <section class="recipe">
+      <h2 id="subtitle">রেসিপি নির্দেশনা</h2>
+      <p id="desc">এই কেক তৈরি করতে নিম্নলিখিত উপকরণ প্রয়োজনঃ</p>
+
+      <ul id="ingredients">
+        <li>ডিম - ২টি</li>
+        <li>চিনি - ১ এর ২ কাপ</li>
+        <li>লবণ - ১ চিমটি</li>
+        <li>ময়দা - ১ কাপ</li>
+        <li>কোকোয়া পাউডার - ১/২ টেবিল চামচ</li>
+        <li>বেকিং পাউডার - ১ চা চামচ</li>
+        <li>ভেনিলা এসেন্স - ১/২ চা চামচ</li>
+        <li>গুড়া দুধ - ১ এর ৪ কাপ</li>
+        <li>দুধ - অল্প</li>
+        <li>তেল - ১ এর ৪ কাপ</li>
+        <li>ঘি - ১ চামচ</li>
+      </ul>
+
+      <p id="method">পদ্ধতিঃ সব উপকরণ মিশিয়ে ব্যাটার তৈরি করুন।</p>
+
+      <div class="batter-container">
+        <div id="batter" class="batter">ব্যাটার</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* Bubble Animation */
+    const batter = document.getElementById("batter");
+    batter.addEventListener("click", () => {
+      batter.classList.add("bubble");
+      setTimeout(() => batter.classList.remove("bubble"), 500);
+    });
+
+    /* Themes */
+    const themes = {
+      brown: {
+        "--bg": "#fff7ef",
+        "--header": "#ffb56b",
+        "--header-border": "#ff9a3d",
+        "--text": "#4a2c00",
+        "--list-bg": "#fff3e4",
+        "--batter-bg": "#f3c48c",
+        "--batter-bg-active": "#ffd4a1"
+      },
+      dark: {
+        "--bg": "#1a1a1a",
+        "--header": "#333",
+        "--header-border": "#555",
+        "--text": "#ffffff",
+        "--list-bg": "#2b2b2b",
+        "--batter-bg": "#444",
+        "--batter-bg-active": "#666"
+      },
+      light: {
+        "--bg": "#ffffff",
+        "--header": "#eeeeee",
+        "--header-border": "#cccccc",
+        "--text": "#000000",
+        "--list-bg": "#f2f2f2",
+        "--batter-bg": "#dddddd",
+        "--batter-bg-active": "#eeeeee"
+      },
+      red: {
+        "--bg": "#ffe5e5",
+        "--header": "#ff6666",
+        "--header-border": "#ff3333",
+        "--text": "#4a0000",
+        "--list-bg": "#ffd1d1",
+        "--batter-bg": "#ff9999",
+        "--batter-bg-active": "#ffb3b3"
+      },
+      pink: {
+        "--bg": "#ffeaf5",
+        "--header": "#ff8ac2",
+        "--header-border": "#ff5eac",
+        "--text": "#4a0030",
+        "--list-bg": "#ffd1eb",
+        "--batter-bg": "#ffb3dd",
+        "--batter-bg-active": "#ffcae8"
+      },
+      violet: {
+        "--bg": "#f0e5ff",
+        "--header": "#b480ff",
+        "--header-border": "#9b52ff",
+        "--text": "#2e004a",
+        "--list-bg": "#e4ccff",
+        "--batter-bg": "#c7a2ff",
+        "--batter-bg-active": "#d8bbff"
+      },
+      yellow: {
+        "--bg": "#fffbdc",
+        "--header": "#ffe66a",
+        "--header-border": "#ffdd33",
+        "--text": "#4a3f00",
+        "--list-bg": "#fff4b3",
+        "--batter-bg": "#ffe680",
+        "--batter-bg-active": "#ffef99"
+      },
+      green: {
+        "--bg": "#e8ffe8",
+        "--header": "#66d66a",
+        "--header-border": "#3fc448",
+        "--text": "#003f00",
+        "--list-bg": "#ccffcc",
+        "--batter-bg": "#99ff99",
+        "--batter-bg-active": "#b3ffb3"
+      },
+      blue: {
+        "--bg": "#e6f3ff",
+        "--header": "#66aaff",
+        "--header-border": "#3388ff",
+        "--text": "#001f4d",
+        "--list-bg": "#cce4ff",
+        "--batter-bg": "#99caff",
+        "--batter-bg-active": "#b3d8ff"
+      }
+    };
+
+    document.getElementById("themeSelect").addEventListener("change", function() {
+      const selected = this.value;
+      const theme = themes[selected];
+      for (let key in theme) {
+        document.documentElement.style.setProperty(key, theme[key]);
+      }
+    });
+
+    /* Languages */
+    const langData = {
+      bn: {
+        title: "তূর্য স্পেশাল কেক রেসিপি",
+        subtitle: "রেসিপি নির্দেশনা",
+        desc: "এই কেক তৈরি করতে নিম্নলিখিত উপকরণ প্রয়োজনঃ",
+        method: "পদ্ধতিঃ সব উপকরণ মিশিয়ে ব্যাটার তৈরি করুন।",
+        batter: "ব্যাটার",
+        ing: [
+          "ডিম - ২টি","চিনি - ১ এর ২ কাপ","লবণ - ১ চিমটি","ময়দা - ১ কাপ",
+          "কোকোয়া পাউডার - ১/২ টেবিল চামচ","বেকিং পাউডার - ১ চা চামচ",
+          "ভেনিলা এসেন্স - ১/২ চা চামচ","গুড়া দুধ - ১ এর ৪ কাপ",
+          "দুধ - অল্প","তেল - ১ এর ৪ কাপ","ঘি - ১ চামচ"
+        ]
+      },
+
+      en: {
+        title: "Turjo Special Cake Recipe",
+        subtitle: "Recipe Instructions",
+        desc: "To make this cake, you will need the following ingredients:",
+        method: "Method: Mix all ingredients to make batter.",
+        batter: "Batter",
+        ing: [
+          "Eggs - 2","Sugar - 1/2 cup","Salt - pinch","Flour - 1 cup",
+          "Cocoa Powder - 1/2 tbsp","Baking Powder - 1 tsp",
+          "Vanilla Essence - 1/2 tsp","Milk Powder - 1/4 cup",
+          "Milk - little","Oil - 1/4 cup","Ghee - 1 tbsp"
+        ]
+      },
+
+      hi: {
+        title: "तूरजो स्पेशल केक रेसिपी",
+        subtitle: "रेसिपी निर्देश",
+        desc: "इस केक को बनाने के लिए निम्न सामग्री चाहिए:",
+        method: "विधि: सभी सामग्री मिलाकर बैटर तैयार करें।",
+        batter: "बैटर",
+        ing: [
+          "अंडे - 2","चीनी - 1/2 कप","नमक - चुटकी","मैदा - 1 कप",
+          "कोको पाउडर - 1/2 टेबलस्पून","बेकिंग पाउडर - 1 टीस्पून",
+          "वनीला एसेंस - 1/2 टीस्पून","दूध पाउडर - 1/4 कप",
+          "दूध - थोड़ा","तेल - 1/4 कप","घी - 1 चम्मच"
+        ]
+      },
+
+      ar: {
+        title: "وصفة كعكة تورجو الخاصة",
+        subtitle: "تعليمات الوصفة",
+        desc: "لعمل هذه الكعكة، تحتاج إلى المكوّنات التالية:",
+        method: "الطريقة: امزج جميع المكوّنات لعمل العجينة.",
+        batter: "العجينة",
+        ing: [
+          "بيض - 2","سكر - نصف كوب","ملح - قليل","دقيق - كوب",
+          "كاكاو - نصف ملعقة","بيكينغ بودر - ملعقة صغيرة",
+          "فانيلا - نصف ملعقة","حليب بودر - ربع كوب",
+          "حليب - قليل","زيت - ربع كوب","سمن - ملعقة"
+        ]
+      }
+    };
+
+    document.getElementById("langSelect").addEventListener("change", function() {
+      const lang = langData[this.value];
+      document.getElementById("title").innerText = lang.title;
+      document.getElementById("subtitle").innerText = lang.subtitle;
+      document.getElementById("desc").innerText = lang.desc;
+      document.getElementById("method").innerText = lang.method;
+      document.getElementById("batter").innerText = lang.batter;
+
+      const ul = document.getElementById("ingredients");
+      ul.innerHTML = "";
+      lang.ing.forEach(i => {
+        const li = document.createElement("li");
+        li.innerText = i;
+        ul.appendChild(li);
+      });
+    });
+  </script>
+
+</body>
+  </html>
